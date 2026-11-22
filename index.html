@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Midnight Bouquet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="stage" aria-label="A 3D rotating bouquet of stargazer lilies, carnations and baby's breath surrounded by glowing particles"></canvas>
+  <div class="words" aria-label="Happy monthsary">
+    <div id="wordL" class="word" data-text="HAPPY"></div>
+    <div id="wordR" class="word" data-text="MONTHSARY"></div>
+  </div>
+  <audio id="bgm" src="music.mp3" loop preload="auto"></audio>
+  <button id="musicBtn" class="music" hidden>Pause music</button>
+  <div id="intro" class="intro">
+    <button id="startBtn" class="start">Start</button>
+    <p>Sound on for the music</p>
+  </div>
+  <p class="hint">Spin the bouquet fast to wake the glow and reveal the message</p>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

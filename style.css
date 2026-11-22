@@ -1,0 +1,119 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 45%, #2a1646 0%, #120a26 55%, #07040f 100%);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+#stage {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  cursor: grab;
+  touch-action: none;
+}
+
+#stage:active { cursor: grabbing; }
+
+.hint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 230, 245, 0.55);
+  pointer-events: none;
+}
+
+/* start screen: dims everything and centers the Start button */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  background: rgba(7, 4, 15, 0.62);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: opacity 0.9s ease, visibility 0.9s;
+}
+.intro.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.intro p {
+  margin: 0;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(255, 230, 245, 0.6);
+}
+.start {
+  padding: 16px 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 200, 230, 0.55);
+  background: rgba(255, 150, 200, 0.16);
+  color: #fff0f7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 0 28px rgba(255, 140, 200, 0.45), inset 0 0 14px rgba(255, 190, 225, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.start:hover { transform: scale(1.06); box-shadow: 0 0 40px rgba(255, 140, 200, 0.7), inset 0 0 18px rgba(255, 190, 225, 0.3); }
+.start:focus-visible, .music:focus-visible { outline: 2px solid #ffd2e8; outline-offset: 3px; }
+
+.music {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 220, 240, 0.4);
+  background: rgba(40, 20, 60, 0.55);
+  color: #ffe6f2;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+.music:hover { background: rgba(80, 40, 110, 0.7); }
+.music[hidden] { display: none; }
+
+/* message that fades in letter by letter as the bouquet is spun */
+.words {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4vw;
+  pointer-events: none;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(26px, 4.2vw, 64px);
+  letter-spacing: 0.12em;
+  color: #ffe3f1;
+}
+.word { display: flex; }
+.word span {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(10px);
+  text-shadow: 0 0 18px rgba(255, 150, 205, 0.85), 0 0 40px rgba(255, 120, 190, 0.5);
+  transition: opacity 1.4s ease, filter 1.4s ease, transform 1.4s ease;
+}
+.word span.on { opacity: 1; filter: blur(0); transform: none; }
+
+@media (max-width: 760px) {
+  .word { writing-mode: vertical-rl; text-orientation: upright; letter-spacing: 0.05em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .word span { transition-duration: 0.01s; filter: none; transform: none; }
+}
